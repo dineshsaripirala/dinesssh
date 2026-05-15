@@ -422,11 +422,21 @@ table.dt tr:hover td{background:rgba(255,255,255,.03);color:var(--text)}
 <div id="page404" class="page">
   <div class="page-404-wrap">
     <div class="page-404-card fade">
+      <div class="brand-mark" style="margin-bottom:20px">
+        <svg class="stackly-logo" onclick="history.back()" style="cursor:pointer" viewBox="0 0 220 70" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(8,6)">
+            <path d="M28,6C20,6 14,12 16,20C18,26 24,28 22,34C20,40 12,42 14,50C16,58 24,62 32,58C26,54 24,48 27,42C30,36 36,34 34,26C32,20 36,14 32,10Z" fill="#4ecdc4" opacity=".95"/>
+            <path d="M22,14C16,16 12,22 15,30C17,36 23,37 21,44C19,50 13,52 16,58C12,54 10,48 13,42C16,36 22,34 20,27C18,20 22,14 22,14Z" fill="#2db5ac" opacity=".7"/>
+          </g>
+          <text x="58" y="45" font-family="'DM Sans',system-ui" font-size="26" font-weight="700" letter-spacing="3" fill="#fff">STACKLY</text>
+        </svg>
+        <p style="color:rgba(200,230,255,.65);font-size:12px;margin-top:3px">Premium Shopping Platform</p>
+      </div>
       <div class="err-code">404</div>
       <div class="err-title">Page Not Found</div>
       <div class="err-sub">This page doesn't exist or hasn't been built yet.<br>Head back and try again.</div>
-      <button class="btn-home" onclick="go('loginPage')">
-        <i class="ti ti-arrow-left"></i> Back to Login
+      <button class="btn-home" onclick="window._prevPage?go(window._prevPage):go('loginPage')">
+        <i class="ti ti-arrow-left"></i> Go Back
       </button>
     </div>
   </div>
@@ -442,7 +452,7 @@ table.dt tr:hover td{background:rgba(255,255,255,.03);color:var(--text)}
     <button class="sidebar-close" onclick="closeSidebar()"><i class="ti ti-x"></i></button>
 
     <div class="sidebar-brand">
-      <svg class="stackly-logo-sm" onclick="location.reload()" viewBox="0 0 220 70" xmlns="http://www.w3.org/2000/svg">
+      <svg class="stackly-logo-sm" onclick="go('page404')" viewBox="0 0 220 70" xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(2,4)"><path d="M28,6C20,6 14,12 16,20C18,26 24,28 22,34C20,40 12,42 14,50C16,58 24,62 32,58C26,54 24,48 27,42C30,36 36,34 34,26C32,20 36,14 32,10Z" fill="#4ecdc4" opacity=".9"/><path d="M22,14C16,16 12,22 15,30C17,36 23,37 21,44C19,50 13,52 16,58C12,54 10,48 13,42C16,36 22,34 20,27C18,20 22,14 22,14Z" fill="#2db5ac" opacity=".7"/></g>
         <text x="52" y="44" font-family="'DM Sans',system-ui" font-size="26" font-weight="700" letter-spacing="3" fill="#4f8ef7">STACKLY</text>
       </svg>
@@ -585,7 +595,7 @@ table.dt tr:hover td{background:rgba(255,255,255,.03);color:var(--text)}
 <script>
 var CU=null,chartsInited=false;
 
-function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function go(id){var cur=document.querySelector('.page.active');if(cur&&cur.id!==id)window._prevPage=cur.id;document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active')}
 
 function tp(id,el){
   var i=document.getElementById(id);
